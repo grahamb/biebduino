@@ -1,16 +1,11 @@
-GND
-+5V
-
-RS --- ARDUINO D7
-
-EN --- ARDUINO D8
-
-
-
-
-DB4 --- ARDUINO D9
-DB5 --- ARDUINO D10
-DB6 --- ARDUINO D11
-DB7 --- ARDUINO D12
-+5V <---> 10R
-GND
+LCD#, HEADER_PIN, ARDUINO, NOTE
+1,1,GND,
+3,2,GND,contrast
+5,3,GND,RW pin
+16,4,GND,backlight
+14,5,9
+11,6,12,
+12,7,11,
+13,8,10
+2,9,5v,
+15,10,5v10R,backlight
