@@ -50,9 +50,39 @@ void setEyeColour(const boolean* colour) {
  }
 }
 
-//  for(int i = 0; i < 3; ++i) {
-//    digitalWrite(eyePins[i], colour[i]);
-//  }
+// MOODS
+unsigned long nextMoodChangeTime = millis();
+unsigned long maxMoodInterval = (90*1000); //3600000;
+unsigned int currentMood;
+const String moods[] = {"angry", "horny", "sad", "mellow", "calm", "blissful", "spooked", "sleeping"};
+void moodSwing() {
+    Serial.println("moodswing");
+    int nextMood = random(7);
+    if (nextMood == currentMood || nextMood == 0) {
+        Serial.println("trying again");
+        moodSwing();
+        return;
+    }
+
+    String moodString = moods[nextMood];
+
+    setEyeColour(colours[nextMood]);
+
+    int maxLength = 16;
+    lcd.clear();
+    lcd.setCursor(2,0);
+    lcd.print("Bieb is...");
+    lcd.setCursor((maxLength-moodString.length())/2, 1);
+    lcd.print(moodString);
+    Serial.println(moodString);
+
+    currentMood = nextMood;
+
+    // pick the next mood swing time
+    // maximum of 3600000ms (one hour)
+    unsigned long interval = random(maxMoodInterval);
+    nextMoodChangeTime = millis() + random(maxMoodInterval);
+    Serial.println("next mood swing in " + String(interval/1000) + " seconds");
 }
 
 
@@ -111,10 +141,10 @@ void post() {
 
 }
 
-
 // MAIN
 void setup() {
     Serial.begin(9600);
+    randomSeed(analogRead(0));
 
     // pin setup
     for (int i=0; i < 3; i++) {
@@ -126,7 +156,13 @@ void setup() {
 
     // run the POST routune
     post();
+
+    // first mood
+    moodSwing();
 }
 
 void loop() {
+    if (millis() >= nextMoodChangeTime) {
+        moodSwing();
+    }
 }
