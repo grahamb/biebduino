@@ -45,9 +45,10 @@ const boolean black[] = {off, off, off};
 const boolean* colours[] = {red, green, blue, yellow, cyan, magenta, white, black};
 const String coloursStr[] = {"red", "green", "blue", "yellow", "cyan", "magenta", "white", "black"};
 void setEyeColour(const boolean* colour) {
-  digitalWrite(3, colour[0]);
-  digitalWrite(5, colour[1]);
-  digitalWrite(6, colour[2]);
+ for(int i = 0; i < 3; ++i) {
+   digitalWrite(eyePins[i], colour[i]);
+ }
+}
 
 //  for(int i = 0; i < 3; ++i) {
 //    digitalWrite(eyePins[i], colour[i]);
