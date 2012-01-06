@@ -66,7 +66,7 @@ void post() {
     Serial.println(out);
     lcd.setCursor(0,0);
     lcd.print(out);
-    out = "Starting tests";
+    out = "Starting POST";
     Serial.println(out);
     lcd.setCursor(0,1);
     lcd.print(out);
