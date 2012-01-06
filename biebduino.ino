@@ -54,7 +54,9 @@ void setEyeColour(const boolean* colour) {
 //  }
 }
 
-// TEST ROUTINE
+
+
+// POST ROUTINE
 void post() {
     // runs during setup() and before loop() starts
     // tests the lcd screen, rgb leds and sonar
