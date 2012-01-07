@@ -173,6 +173,14 @@ void setup() {
 
 void loop() {
     if (millis() >= nextMoodChangeTime) {
+    unsigned long now = millis();
+    if ((currentMood == 0 && getDistance() > 12) || (now >= nextMoodChangeTime)) {
         moodSwing();
     }
+
+    if (getDistance() < 12) {
+      soAngry(255);
+    }
+   Serial.println("Distnce " + String(getDistance()) + "\"");
+   delay(100);
 }
