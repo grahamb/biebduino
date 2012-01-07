@@ -59,10 +59,11 @@ void setEyeColour(const boolean* colour) {
 }
 
 // MOODS
-unsigned long nextMoodChangeTime = millis();
-unsigned long maxMoodInterval = (90*1000); //3600000;
-unsigned int currentMood;
-const String moods[] = {"angry", "horny", "sad", "mellow", "calm", "blissful", "spooked", "sleeping"};
+unsigned long nextMoodChangeTime = 0;
+unsigned long minMoodInterval = (10000);
+unsigned long maxMoodInterval = (90001); //3600000;
+unsigned int currentMood = 666;
+const String moods[] = {"angry", "horny", "sad", "mellow", "calm", "blissful", "spooked", "sleepy"};
 void moodSwing() {
     Serial.print("moodswing @ ");
     Serial.println(millis());
@@ -87,9 +88,10 @@ void moodSwing() {
 
     // pick the next mood swing time
     // maximum of 3600000ms (one hour)
-    unsigned long interval = random(maxMoodInterval);
-    nextMoodChangeTime = millis() + random(maxMoodInterval);
-    Serial.println("next mood swing in " + String(interval/1000) + " seconds");
+    unsigned long interval = random(minMoodInterval, maxMoodInterval);
+    nextMoodChangeTime = millis() + interval;
+    Serial.print("next mood swing in "); Serial.print(interval); Serial.print(" millis @ "); Serial.println(nextMoodChangeTime);
+}
 void soAngry(int angerLevel) {
     currentMood = 0;
     setEyeColour(colours[0]);
@@ -171,7 +173,6 @@ void setup() {
 }
 
 void loop() {
-    if (millis() >= nextMoodChangeTime) {
     unsigned long now = millis();
     if ((currentMood == 0 && getDistance() > 12) || (now >= nextMoodChangeTime)) {
         moodSwing();
