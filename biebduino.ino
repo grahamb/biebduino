@@ -68,7 +68,10 @@ void moodSwing() {
     int nextMood = random(7);
     if (nextMood == currentMood || nextMood == 0) {
         Serial.println("trying again");
-        moodSwing();
+        Serial.println("Oops, picked mood " + moods[nextMood]);
+        unsigned long interval = random(minMoodInterval, maxMoodInterval);
+        nextMoodChangeTime = millis() + interval;
+        Serial.print("next mood swing in "); Serial.print(interval); Serial.print(" millis @ "); Serial.println(nextMoodChangeTime);
         return;
     }
 
