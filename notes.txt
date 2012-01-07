@@ -1,3 +1,4 @@
+LCD Pinout
 LCD#, HEADER_PIN, ARDUINO, NOTE
 1,1,GND,
 3,2,GND,contrast
@@ -9,3 +10,11 @@ LCD#, HEADER_PIN, ARDUINO, NOTE
 13,8,10
 2,9,5v,
 15,10,5v10R,backlight
+
+=======================================================
+ANGRY
+base distance: 60 inches
+sensor mins out at 5-6 inches
+[ 60 ---------- 48 ---------- 24 ---------- 12 ---------- >6 ]
+       MIFFED       ANNOYED     GETTING ANGRY   SO ANGRY
+        127           159            191           255
