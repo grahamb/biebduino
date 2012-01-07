@@ -64,10 +64,11 @@ unsigned long maxMoodInterval = (90*1000); //3600000;
 unsigned int currentMood;
 const String moods[] = {"angry", "horny", "sad", "mellow", "calm", "blissful", "spooked", "sleeping"};
 void moodSwing() {
-    Serial.println("moodswing");
-    int nextMood = random(7);
+    Serial.print("moodswing @ ");
+    Serial.println(millis());
+    int nextMood = random(0,8);
+    Serial.println(nextMood);
     if (nextMood == currentMood || nextMood == 0) {
-        Serial.println("trying again");
         Serial.println("Oops, picked mood " + moods[nextMood]);
         unsigned long interval = random(minMoodInterval, maxMoodInterval);
         nextMoodChangeTime = millis() + interval;
