@@ -169,9 +169,6 @@ void setup() {
 
     // run the POST routune
     post();
-
-    // first mood
-    moodSwing();
 }
 
 void loop() {
