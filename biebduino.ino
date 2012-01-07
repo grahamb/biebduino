@@ -32,6 +32,14 @@ void lcdClearLine(int line) {
     lcd.print("                ");
     lcd.setCursor(0,line);
 }
+void lcdPrintMood(String moodString) {
+    lcd.clear();
+    lcd.setCursor(4,0);
+    lcd.print("Bieb is:");
+    lcd.setCursor((16-moodString.length())/2, 1);
+    lcd.print(moodString);
+}
+
 
 // EYE LEDs
 const boolean red[] = {on, off, off};
