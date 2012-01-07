@@ -80,12 +80,7 @@ void moodSwing() {
 
     setEyeColour(colours[nextMood]);
 
-    int maxLength = 16;
-    lcd.clear();
-    lcd.setCursor(2,0);
-    lcd.print("Bieb is...");
-    lcd.setCursor((maxLength-moodString.length())/2, 1);
-    lcd.print(moodString);
+    lcdPrintMood(moodString);
     Serial.println(moodString);
 
     currentMood = nextMood;
