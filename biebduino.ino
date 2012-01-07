@@ -91,8 +91,13 @@ void moodSwing() {
     unsigned long interval = random(maxMoodInterval);
     nextMoodChangeTime = millis() + random(maxMoodInterval);
     Serial.println("next mood swing in " + String(interval/1000) + " seconds");
+void soAngry(int angerLevel) {
+    currentMood = 0;
+    setEyeColour(colours[0]);
+    lcdPrintMood("ANGRY!");
+    Serial.println("ANGRY!");
+    delay(1000);
 }
-
 
 
 // POST ROUTINE
