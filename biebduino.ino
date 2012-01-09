@@ -98,12 +98,28 @@ void moodSwing() {
     nextMoodChangeTime = millis() + interval;
     Serial.print("next mood swing in "); Serial.print(interval); Serial.print(" millis @ "); Serial.println(nextMoodChangeTime);
 }
-void soAngry(int angerLevel) {
+
+void soAngry(int distance) {
+    Serial.println("*****GETTING ANGRY*****");
+    Serial.println("Distance: " + String(distance));
+    String angerLevelsStr[] = {/*"ANNOYED",*/ "GETTING MAD", "SO ANGRY", "GONNA EAT YOU"};
+    int pwmLevels[] = {/*2, */ 20, 60, 255};
+    int angerLevel = map(distance, 5, maxAngerThresholdDistance+1, 2, -1);
+    Serial.println("Anger Level: " + angerLevelsStr[angerLevel] + " " +String(angerLevel));
     currentMood = 0;
-    setEyeColour(colours[0]);
-    lcdPrintMood("ANGRY!");
-    Serial.println("ANGRY!");
-    delay(1000);
+    Serial.println("Last Anger Level: " + String(lastAngerLevel));
+    if (angerLevel == lastAngerLevel) {
+        Serial.println("unchanged anger");
+        return;
+    }
+    Serial.println("Set Eyes To PWM " + pwmLevels[angerLevel]);
+    setEyeColour(colours[7]);
+    analogWrite(eyeRed, pwmLevels[angerLevel]);
+    lastAngerLevel = angerLevel;
+    lcdPrintMood(angerLevelsStr[angerLevel] + " " + distance);
+    Serial.println(angerLevelsStr[angerLevel]);
+    nextMoodChangeTime = millis() + 6000;
+    delay(3000);
 }
 
 
