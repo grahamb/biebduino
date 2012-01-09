@@ -41,7 +41,7 @@ void lcdClearLine(int line) {
 void lcdPrintMood(String moodString) {
     lcd.clear();
     lcd.setCursor(4,0);
-    lcd.print("Bieb is:");
+    lcd.print("Bieb is");
     lcd.setCursor((16-moodString.length())/2, 1);
     lcd.print(moodString);
 }
