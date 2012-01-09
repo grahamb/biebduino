@@ -58,6 +58,7 @@ const boolean white[] = {on, on, on};
 const boolean black[] = {off, off, off};
 const boolean* colours[] = {red, green, blue, yellow, cyan, magenta, white, black};
 const String coloursStr[] = {"red", "green", "blue", "yellow", "cyan", "magenta", "white", "black"};
+
 void setEyeColour(const boolean* colour) {
  for(int i = 0; i < 3; ++i) {
    digitalWrite(eyePins[i], colour[i]);
@@ -69,17 +70,20 @@ unsigned long nextMoodChangeTime = 0;
 unsigned long minMoodInterval = (10000);
 unsigned long maxMoodInterval = (90001); //3600000;
 unsigned int currentMood = 666;
+unsigned int lastAngerLevel = 666;
+unsigned int maxAngerThresholdDistance = 60;
 const String moods[] = {"angry", "horny", "sad", "mellow", "calm", "blissful", "spooked", "sleepy"};
+
 void moodSwing() {
+    lastAngerLevel = 666;
     Serial.print("moodswing @ ");
     Serial.println(millis());
     int nextMood = random(0,8);
     Serial.println(nextMood);
     if (nextMood == currentMood || nextMood == 0) {
         Serial.println("Oops, picked mood " + moods[nextMood]);
-        unsigned long interval = random(minMoodInterval, maxMoodInterval);
-        nextMoodChangeTime = millis() + interval;
-        Serial.print("next mood swing in "); Serial.print(interval); Serial.print(" millis @ "); Serial.println(nextMoodChangeTime);
+        nextMoodChangeTime = millis() + 500;
+        Serial.print("next mood swing in 500 millis @ "); Serial.println(nextMoodChangeTime);
         return;
     }
 
@@ -163,7 +167,7 @@ void post() {
     lcd.print(out);
     lcd.setCursor(0,1);
 
-    for(int i=0; i < 20; i++) {
+    for(int i=0; i < 10; i++) {
         distance = getDistance();
         lcdClearLine(1);
         out = "Distance: " + String(distance);
@@ -201,10 +205,4 @@ void loop() {
     } else if ((currentMood == 0 && distance > maxAngerThresholdDistance && now >= nextMoodChangeTime) || (now >= nextMoodChangeTime)) {
         moodSwing();
     }
-
-    if (getDistance() < 12) {
-      soAngry(255);
-    }
-   Serial.println("Distnce " + String(getDistance()) + "\"");
-   delay(100);
 }
