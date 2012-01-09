@@ -158,7 +158,7 @@ void post() {
 // MAIN
 void setup() {
     Serial.begin(9600);
-    randomSeed(analogRead(0));
+    randomSeed(analogRead(1));
 
     // pin setup
     for (int i=0; i < 3; i++) {
