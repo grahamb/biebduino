@@ -17,7 +17,7 @@ const int eyePins[] = {3, 5, 6};
 
 
 // Sonar
-const int sonar = A1;
+const int sonar = A0;
 int distance;
 const int angerThreshold = 24;
 int getDistance() {
