@@ -21,7 +21,13 @@ const int sonar = A0;
 int distance;
 const int angerThreshold = 24;
 int getDistance() {
-    return analogRead(sonar) / 2;
+    int sum=0;
+    int max = 20;
+    for (int i=0; i < max; i++) {
+        sum += analogRead(sonar);
+        delay(10);
+    }
+    return (sum/max) / 2;
 }
 
 // LCD
