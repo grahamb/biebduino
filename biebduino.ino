@@ -180,7 +180,10 @@ void setup() {
 
 void loop() {
     unsigned long now = millis();
-    if ((currentMood == 0 && getDistance() > 12) || (now >= nextMoodChangeTime)) {
+    unsigned int distance = getDistance();
+    if (distance <= maxAngerThresholdDistance) {
+      soAngry(distance);
+    } else if ((currentMood == 0 && distance > maxAngerThresholdDistance && now >= nextMoodChangeTime) || (now >= nextMoodChangeTime)) {
         moodSwing();
     }
 
