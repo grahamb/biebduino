@@ -157,8 +157,7 @@ void post() {
     }
 
     lcd.clear();
-    lcd.print("Tests complete");
-
+    lcd.print("POST Complete");
 }
 
 // MAIN
@@ -175,7 +174,7 @@ void setup() {
     lcd.begin(16, 2);
 
     // run the POST routune
-    post();
+   post();
 }
 
 void loop() {
