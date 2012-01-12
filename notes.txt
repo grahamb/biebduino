@@ -17,4 +17,4 @@ base distance: 60 inches
 sensor mins out at 5-6 inches
 [ 60 ---------- 48 ---------- 24 ---------- 12 ---------- >6 ]
        MIFFED       ANNOYED     GETTING ANGRY   SO ANGRY
-        127           159            191           255
+         4             64            128           255
