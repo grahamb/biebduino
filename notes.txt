@@ -1,16 +1,17 @@
 LCD Pinout
 LCD#, HEADER_PIN, ARDUINO, NOTE
-1,1,GND,
-3,2,GND,contrast
-5,3,GND,RW pin
-16,4,GND,backlight
-14,5,9
-11,6,12,
-12,7,11,
-13,8,10
-2,9,5v,
-15,10,5v10R,backlight
-
+1,1,GND, black w/ 1 silver
+3,2,GND,contrast, black w/ 2 silver
+5,3,GND,RW pin, black w/ 3 silver
+16,4,GND,backlight, black w/ 4 silver
+14,5,9, yellow
+11,6,12, green
+12,7,11, blue
+13,8,10, orange
+2,9,5v, red w/ blue dot
+15,10,5v10R, red backlight
+6,-,8,blue thin
+4,-,7,blue/white thin
 =======================================================
 ANGRY
 base distance: 60 inches
