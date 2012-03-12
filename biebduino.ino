@@ -120,7 +120,7 @@ void soAngry(int distance) {
     setEyeColour(colours[7]);
     analogWrite(eyeRed, pwmLevels[angerLevel]);
     lastAngerLevel = angerLevel;
-    lcdPrintMood(angerLevelsStr[angerLevel] + " " + distance);
+    lcdPrintMood(angerLevelsStr[angerLevel]);
     Serial.println(angerLevelsStr[angerLevel]);
     nextMoodChangeTime = millis() + 6000;
     delay(3000);
